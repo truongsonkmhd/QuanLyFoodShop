@@ -8,10 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- *
- * @author Tran Nhat Sinh
- */
+
 public class PhieuNhap extends Phieu {
 
     private String nhaCungCap;

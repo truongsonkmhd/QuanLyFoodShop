@@ -11,10 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import model.NhaCungCap;
-
 /**
  *
- * @author Tran Nhat Sinh
+ * @author truongsonkmhd
  */
 public class AddNhaCungCap extends javax.swing.JDialog {
 

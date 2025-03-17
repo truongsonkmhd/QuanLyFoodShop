@@ -17,7 +17,7 @@ import model.Account;
 
 /**
  *
- * @author Tran Nhat Sinh
+ * @author truongsonkmhd
  */
 public class Admin extends javax.swing.JFrame {
 
