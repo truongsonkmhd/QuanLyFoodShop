@@ -17,7 +17,7 @@ import model.Account;
 
 /**
  *
- * @author Tran Nhat Sinh
+ * @author truongsonkmhd
  */
 public class XuatKho extends javax.swing.JFrame {
 
@@ -45,8 +45,8 @@ public class XuatKho extends javax.swing.JFrame {
         XuatHangForm xh = new XuatHangForm();
         xh.setNguoiTao(t.getUser());
         MainContent.add(xh).setVisible(true);
-        DefaultColor = new Color(89, 168, 105);
-        ClickedColor = new Color(26, 188, 156);
+        DefaultColor = new Color(255, 87, 34);
+        ClickedColor = new Color(255, 138, 101);
         NavbarMenu.setBackground(DefaultColor);
         XuatHang.setBackground(ClickedColor);
         PhieuXuat.setBackground(DefaultColor);

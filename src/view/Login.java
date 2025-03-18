@@ -36,11 +36,11 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         UIManager.put("Button.focus", Color.white);
-        panDefualt = new Color(89, 168, 105);
-        panClick = new Color(89, 168, 120);
-        panEnter = new Color(89, 168, 120);
+        panDefualt = new Color(255, 87, 34);
+        panClick = new Color(255, 103, 51);
+        panEnter = new Color(255, 138, 101);
         JPaneLogin.setBackground(panDefualt);
-        ImageIcon logo = new ImageIcon(getClass().getResource("/icon/logo.png"));
+        ImageIcon logo = new ImageIcon(getClass().getResource("/icon/logoapp.jpg"));
         setIconImage(logo.getImage());
     }
 
@@ -64,7 +64,7 @@ public class Login extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jcNhoMk = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Đăng nhập vào phần mềm");
@@ -151,7 +151,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(JPaneLoginLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(451, Short.MAX_VALUE))
         );
         JPaneLoginLayout.setVerticalGroup(
             JPaneLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +160,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(JPaneLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 270, 40));
+        jPanel1.add(JPaneLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 270, 40));
 
         jLabel8.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         jLabel8.setText("Password");
@@ -175,7 +175,7 @@ public class Login extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/user.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
@@ -185,16 +185,13 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("LOGIN <3");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 250, 70));
 
-        jLabel9.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Quên mật khẩu ?");
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+        jcNhoMk.setText("Nhớ mật khẩu");
+        jcNhoMk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcNhoMkActionPerformed(evt);
             }
         });
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, -1, -1));
+        jPanel1.add(jcNhoMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 200, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -282,9 +279,9 @@ public class Login extends javax.swing.JFrame {
         rcv.setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+    private void jcNhoMkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcNhoMkActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel9MouseClicked
+    }//GEN-LAST:event_jcNhoMkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,8 +356,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JCheckBox jcNhoMk;
     private javax.swing.JTextField loginUser;
     private javax.swing.JPasswordField passwordUser;
     // End of variables declaration//GEN-END:variables

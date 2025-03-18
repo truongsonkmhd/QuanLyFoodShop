@@ -5,6 +5,7 @@
 package view;
 
 import controller.SearchProduct;
+import dao.KhuVucKhoDAO;
 import dao.SanPhamDAO;
 import java.awt.Desktop;
 import java.io.BufferedInputStream;
@@ -36,7 +37,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
- * @author Robot
+ * @author truongsonkmhd
  */
 public class ProductForm extends javax.swing.JInternalFrame {
 
@@ -49,6 +50,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         tblSanPham.setDefaultEditor(Object.class, null);
         initTable();
+        System.out.println("okkokoko");
         loadDataToTable();
         changeTextFind();
     }
@@ -84,8 +86,10 @@ public class ProductForm extends javax.swing.JInternalFrame {
             tblModel.setRowCount(0);
             for (SanPham i : armt) {
                 if (i.getTrangThai() == 1) {
+                    String nameKhuVuc = KhuVucKhoDAO.getInstance().selectById(i.getKhuVucKho()).getTenKhuVucKho();
+                    System.out.println(nameKhuVuc);
                     tblModel.addRow(new Object[]{
-                        i.getMaSp(), i.getTenSp(), i.getSoLuong(), formatter.format(i.getGia()) + "đ", i.getThuongHieu(), i.getKhuVucKho(), i.getXuatXu(), i.getLoaiSP()
+                        i.getMaSp(), i.getTenSp(), i.getSoLuong(), formatter.format(i.getGia()) + "đ", i.getThuongHieu(),nameKhuVuc, i.getXuatXu(), i.getLoaiSP()
                     });
                 }
             }
@@ -294,7 +298,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
         if (tblSanPham.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xoá");
         } else {
-            xoaMayTinhSelect();
+            xoaSpSelect();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -457,19 +461,19 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
 
 
-    public void xoaMayTinhSelect() {
+    public void xoaSpSelect() {
         DefaultTableModel table_acc = (DefaultTableModel) tblSanPham.getModel();
         int i_row = tblSanPham.getSelectedRow();
         int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá sản phẩm này?", "Xoá sản phẩm",
                 JOptionPane.YES_NO_OPTION);
         if (luaChon == JOptionPane.YES_OPTION) {
-            SanPham remove = getMayTinhSelect();
+            SanPham remove = getSanPhamSelected();
             SanPhamDAO.getInstance().deleteTrangThai(remove.getMaSp());
         }
         loadDataToTable();
     }
 
-    public SanPham getMayTinhSelect() {
+    public SanPham getSanPhamSelected() {
         int i_row = tblSanPham.getSelectedRow();
         SanPham acc = SanPhamDAO.getInstance().selectById(tblModel.getValueAt(i_row, 0).toString());
         return acc;
@@ -486,6 +490,11 @@ public class ProductForm extends javax.swing.JInternalFrame {
             }
         } catch (Exception e) {
         }
+    }
+    
+      public SanPham getDetailSanPham() {
+        SanPham a = SanPhamDAO.getInstance().selectById(getSanPhamSelected().getMaSp());
+        return a;
     }
 
     public void changeTextFind() {

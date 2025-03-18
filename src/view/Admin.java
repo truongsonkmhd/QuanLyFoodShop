@@ -37,7 +37,7 @@ public class Admin extends javax.swing.JFrame {
 
 
     public Admin(Account t) throws UnsupportedLookAndFeelException {
-        ImageIcon logo = new ImageIcon(getClass().getResource("/icon/logo.png"));
+        ImageIcon logo = new ImageIcon(getClass().getResource("/icon/logoapp.jpg"));
         setIconImage(logo.getImage());
         UIManager.setLookAndFeel(new FlatLightLaf());
         UIManager.put("Table.showVerticalLines", true);
@@ -48,8 +48,8 @@ public class Admin extends javax.swing.JFrame {
         ProductForm pf = new ProductForm();
         MainContent.add(pf).setVisible(true);
 //        pf.checkRole(currentAcc);
-        DefaultColor = new Color(89, 168, 105);
-        ClickedColor = new Color(26, 188, 156);
+        DefaultColor = new Color(255, 87, 34);
+        ClickedColor = new Color(255, 138, 101);
         NavbarMenu.setBackground(DefaultColor);
         SanPham.setBackground(ClickedColor);
         PhieuNhap.setBackground(DefaultColor);
@@ -108,10 +108,10 @@ public class Admin extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        NavbarMenu.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        NavbarMenu.setBackground(new java.awt.Color(255, 153, 102));
         NavbarMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        SanPham.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        SanPham.setBackground(new java.awt.Color(255, 153, 102));
         SanPham.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -146,7 +146,7 @@ public class Admin extends javax.swing.JFrame {
 
         NavbarMenu.add(SanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 40));
 
-        NhapHang.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        NhapHang.setBackground(new java.awt.Color(255, 153, 102));
         NhapHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NhapHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -181,7 +181,7 @@ public class Admin extends javax.swing.JFrame {
 
         NavbarMenu.add(NhapHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 240, -1));
 
-        PhieuNhap.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        PhieuNhap.setBackground(new java.awt.Color(255, 153, 102));
         PhieuNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PhieuNhap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -216,7 +216,7 @@ public class Admin extends javax.swing.JFrame {
 
         NavbarMenu.add(PhieuNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 240, 40));
 
-        XuatHang.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        XuatHang.setBackground(new java.awt.Color(255, 153, 102));
         XuatHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         XuatHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -251,7 +251,7 @@ public class Admin extends javax.swing.JFrame {
 
         NavbarMenu.add(XuatHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 240, 40));
 
-        DangXuat.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        DangXuat.setBackground(new java.awt.Color(255, 153, 102));
         DangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DangXuatMouseClicked(evt);
@@ -285,7 +285,7 @@ public class Admin extends javax.swing.JFrame {
 
         NavbarMenu.add(DangXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 690, 240, -1));
 
-        NhaCungCap.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        NhaCungCap.setBackground(new java.awt.Color(255, 153, 102));
         NhaCungCap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NhaCungCap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -332,7 +332,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel8.setText("HI !");
         NavbarMenu.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 40, -1));
 
-        PhieuXuat.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        PhieuXuat.setBackground(new java.awt.Color(255, 153, 102));
         PhieuXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PhieuXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -343,6 +343,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setBackground(new java.awt.Color(255, 153, 102));
         jLabel9.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_database_daily_export_25px.png"))); // NOI18N
@@ -367,7 +368,7 @@ public class Admin extends javax.swing.JFrame {
 
         NavbarMenu.add(PhieuXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 240, 40));
 
-        TonKho.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        TonKho.setBackground(new java.awt.Color(255, 153, 102));
         TonKho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TonKho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -402,7 +403,7 @@ public class Admin extends javax.swing.JFrame {
 
         NavbarMenu.add(TonKho, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 240, -1));
 
-        TaiKhoan1.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        TaiKhoan1.setBackground(new java.awt.Color(255, 153, 102));
         TaiKhoan1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TaiKhoan1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -437,7 +438,7 @@ public class Admin extends javax.swing.JFrame {
 
         NavbarMenu.add(TaiKhoan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 240, -1));
 
-        ThongKe.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        ThongKe.setBackground(new java.awt.Color(255, 153, 102));
         ThongKe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -472,7 +473,7 @@ public class Admin extends javax.swing.JFrame {
 
         NavbarMenu.add(ThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 240, -1));
 
-        Account.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        Account.setBackground(new java.awt.Color(255, 153, 102));
         Account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Account.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -483,6 +484,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        jLabel14.setBackground(new java.awt.Color(255, 153, 102));
         jLabel14.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-information-25.png"))); // NOI18N
@@ -753,17 +755,6 @@ public class Admin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) throws UnsupportedLookAndFeelException {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Admin().setVisible(true);
-            }
-        });
-    }
 
     public void setName(String name) {
         this.NameUser.setText(name);

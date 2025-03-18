@@ -17,7 +17,7 @@ import model.Account;
 
 /**
  *
- * @author Tran Nhat Sinh
+ * @authortruongsonkmhd
  */
 public class QuanLiKho extends javax.swing.JFrame {
 
@@ -43,8 +43,8 @@ public class QuanLiKho extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         ProductForm pf = new ProductForm();
         MainContent.add(pf).setVisible(true);
-        DefaultColor = new Color(89, 168, 105);
-        ClickedColor = new Color(26, 188, 156);
+         DefaultColor = new Color(255, 87, 34);
+        ClickedColor = new Color(255, 138, 101);
         NavbarMenu.setBackground(DefaultColor);
         SanPham.setBackground(ClickedColor);
         PhieuNhap.setBackground(DefaultColor);

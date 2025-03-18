@@ -4,13 +4,12 @@
  */
 package view;
 
+import dao.KhuVucKhoDAO;
 import dao.SanPhamDAO;
-import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.SanPham;
-
 
 /**
  *
@@ -18,15 +17,18 @@ import model.SanPham;
  */
 public class AddProduct extends javax.swing.JDialog {
 
- 
     private ProductForm owner;
+    KhuVucKhoDAO dao = new KhuVucKhoDAO();
 
     public AddProduct(javax.swing.JInternalFrame parent, javax.swing.JFrame owner, boolean modal) {
         super(owner, modal);
         this.owner = (ProductForm) parent;
         initComponents();
         setLocationRelativeTo(null);
-        txtMaSanPham.setText(createIdLT());
+        txtMaSanPham.setText(createIdTA());
+
+        KhuVucKhoDAO.getInstance().selectAll().forEach(kv -> cbbKvKho.addItem(kv.getTenKhuVucKho()));
+
     }
 
     private AddProduct(JFrame jFrame, boolean b) {
@@ -53,13 +55,6 @@ public class AddProduct extends javax.swing.JDialog {
         cbbKvKho = new javax.swing.JComboBox<>();
         btnAddProduct = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        laptop = new javax.swing.JPanel();
-        pc = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        txtMainBoard = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        txtCongsuatNguon = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtThuongHieu = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -85,7 +80,6 @@ public class AddProduct extends javax.swing.JDialog {
 
         jLabel10.setText("Khu vực kho");
 
-        cbbKvKho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laptop", "PC" }));
         cbbKvKho.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbbKvKhoItemStateChanged(evt);
@@ -123,57 +117,6 @@ public class AddProduct extends javax.swing.JDialog {
                 btnCancelActionPerformed(evt);
             }
         });
-
-        jPanel3.setLayout(new java.awt.CardLayout());
-
-        laptop.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout laptopLayout = new javax.swing.GroupLayout(laptop);
-        laptop.setLayout(laptopLayout);
-        laptopLayout.setHorizontalGroup(
-            laptopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
-        );
-        laptopLayout.setVerticalGroup(
-            laptopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 136, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(laptop, "card2");
-
-        pc.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel13.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
-        jLabel13.setText("MainBoard");
-
-        jLabel14.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
-        jLabel14.setText("Công suất nguồn");
-
-        javax.swing.GroupLayout pcLayout = new javax.swing.GroupLayout(pc);
-        pc.setLayout(pcLayout);
-        pcLayout.setHorizontalGroup(
-            pcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtMainBoard)
-            .addComponent(txtCongsuatNguon)
-            .addGroup(pcLayout.createSequentialGroup()
-                .addGroup(pcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 189, Short.MAX_VALUE))
-        );
-        pcLayout.setVerticalGroup(
-            pcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pcLayout.createSequentialGroup()
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMainBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCongsuatNguon, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel3.add(pc, "card2");
 
         jLabel11.setText("Thương hiệu");
 
@@ -227,9 +170,7 @@ public class AddProduct extends javax.swing.JDialog {
                                     .addComponent(jLabel10)
                                     .addComponent(txtThuongHieu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(43, 43, 43))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -257,15 +198,11 @@ public class AddProduct extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(txtThuongHieu, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbbKvKho, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbbKvKho, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtMaSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,8 +217,8 @@ public class AddProduct extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxloaisp, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(cbxloaisp, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtXuatXu, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,7 +231,7 @@ public class AddProduct extends javax.swing.JDialog {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 560, 390));
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 102));
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -332,39 +269,46 @@ public class AddProduct extends javax.swing.JDialog {
         String maSP = txtMaSanPham.getText();
         String tenSP = txtTenSanPham.getText();
         String xuatXu = txtXuatXu.getText();
-        String thuongHieu = txtDonGia.getText();
+        String thuongHieu = txtThuongHieu.getText(); // Use the correct field for brand name
+
+        if (maSP.trim().equals("") || tenSP.trim().equals("") || xuatXu.trim().equals("") || txtDonGia.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !");
+            return; // Exit the method if validation fails
+        }
+
         double dongia = 0;
         try {
             dongia = Double.parseDouble(txtDonGia.getText());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đơn giá ở dạng số !");
+            return; // Exit the method if parsing fails
         }
-        String xuatxu = txtXuatXu.getText();
-        
+
         int trangThai = 1;
-        
-         String loaiSP = "";
-        if (cbbKvKho.getSelectedItem().equals("Eat")) {
-           loaiSP = "Thuc An";
-           
+
+        String loaiSP = "";
+        if (cbxloaisp.getSelectedItem().equals("Eat")) {
+            loaiSP = "Thuc An";
         } else {
-          loaiSP = "Nuoc Uong";
+            loaiSP = "Nuoc Uong";
         }
-         if (maSP.equals("") && tenSP.equals("")&& xuatXu.equals("")&& thuongHieu.equals("")) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !");
-            } else {
-                SanPham lp = new SanPham( maSP, tenSP, 0, dongia,thuongHieu, 0,xuatXu,loaiSP,trangThai);
-                try {
-                    SanPhamDAO.getInstance().insert(lp);
-                    this.dispose();
-                    JOptionPane.showMessageDialog(this, "Thêm sản phẩm thành công !");
-                    owner.loadDataToTable();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Thêm sản phẩm thất bại !");
-                }
+        
+        int idKhuVucKho = cbbKvKho.getSelectedIndex() + 1;
+
+        SanPham lp = new SanPham(maSP, tenSP, 0, dongia, thuongHieu, idKhuVucKho, xuatXu, loaiSP, trangThai);
+        try {
+            if(SanPhamDAO.getInstance().insert(lp)!=0){
+            this.dispose();
+            JOptionPane.showMessageDialog(this, "Thêm sản phẩm thành công !");
+            owner.loadDataToTable();
             }
+            
        
- 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Thêm sản phẩm thất bại: " + e.getMessage());
+            e.printStackTrace(); // Add this to help with debugging
+        }
+
     }//GEN-LAST:event_btnAddProductActionPerformed
 
     private void cbbKvKhoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbbKvKhoPropertyChange
@@ -376,18 +320,7 @@ public class AddProduct extends javax.swing.JDialog {
     }//GEN-LAST:event_cbbKvKhoActionPerformed
 
     private void cbbKvKhoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbKvKhoItemStateChanged
-        // TODO add your handling code here:
-        if (cbbKvKho.getSelectedItem().equals("Laptop")) {
-            CardLayout productCategory = (CardLayout) jPanel3.getLayout();
-            productCategory.first(jPanel3);
-            txtMaSanPham.setText(createIdLT());
-        }
 
-        if (cbbKvKho.getSelectedItem().equals("PC")) {
-            CardLayout productCategory = (CardLayout) jPanel3.getLayout();
-            productCategory.last(jPanel3);
-            txtMaSanPham.setText(createIdPC());
-        }
     }//GEN-LAST:event_cbbKvKhoItemStateChanged
 
     private void txtXuatXuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXuatXuActionPerformed
@@ -396,31 +329,25 @@ public class AddProduct extends javax.swing.JDialog {
 
     private void cbxloaispItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxloaispItemStateChanged
         // TODO add your handling code here:
-        if (cbbKvKho.getSelectedItem().equals("Laptop")) {
-            CardLayout productCategory = (CardLayout) jPanel3.getLayout();
-            productCategory.first(jPanel3);
-            txtMaSanPham.setText(createIdLT());
-        }
 
-        if (cbbKvKho.getSelectedItem().equals("PC")) {
-            CardLayout productCategory = (CardLayout) jPanel3.getLayout();
-            productCategory.last(jPanel3);
-            txtMaSanPham.setText(createIdPC());
-        }
     }//GEN-LAST:event_cbxloaispItemStateChanged
 
     private void cbxloaispActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxloaispActionPerformed
         // TODO add your handling code here:
+        if (cbxloaisp.getSelectedItem().equals("Eat")) {
+            txtMaSanPham.setText(createIdTA());
+        }
+
+        if (cbxloaisp.getSelectedItem().equals("Drink")) {
+            txtMaSanPham.setText(createIdDU());
+        }
     }//GEN-LAST:event_cbxloaispActionPerformed
 
     private void cbxloaispPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbxloaispPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxloaispPropertyChange
 
-    /**
-     * @param args the command line arguments
-     */
-    public String createIdPC() {
+    public String createIdTA() {
         ArrayList<SanPham> mtAll = SanPhamDAO.getInstance().selectAll();
         ArrayList<SanPham> pcAll = new ArrayList<>();
         for (SanPham sanPham : mtAll) {
@@ -429,24 +356,24 @@ public class AddProduct extends javax.swing.JDialog {
             }
         }
         int i = pcAll.size();
-        String check ="check";
-        while(check.length()!=0){
+        String check = "check";
+        while (check.length() != 0) {
             i++;
             for (SanPham mayTinh : pcAll) {
-                if(mayTinh.getMaSp().equals("TA"+i)){
-                    check="";
+                if (mayTinh.getMaSp().equals("TA" + i)) {
+                    check = "";
                 }
             }
-            if(check.length()==0){
-                check ="check";
+            if (check.length() == 0) {
+                check = "check";
             } else {
                 check = "";
             }
         }
-        return "PC" + i;
+        return "TA" + i;
     }
 
-    public String createIdLT() {
+    public String createIdDU() {
         ArrayList<SanPham> mtAll = SanPhamDAO.getInstance().selectAll();
         ArrayList<SanPham> lpAll = new ArrayList<>();
         for (SanPham sanPham : mtAll) {
@@ -455,61 +382,21 @@ public class AddProduct extends javax.swing.JDialog {
             }
         }
         int i = lpAll.size();
-        String check ="check";
-        while(check.length()!=0){
+        String check = "check";
+        while (check.length() != 0) {
             i++;
             for (SanPham sanPham : lpAll) {
-                if(sanPham.getMaSp().equals("DU"+i)){
-                    check="";
+                if (sanPham.getMaSp().equals("DU" + i)) {
+                    check = "";
                 }
             }
-            if(check.length()==0){
-                check ="check";
+            if (check.length() == 0) {
+                check = "check";
             } else {
                 check = "";
             }
         }
-        return "LP" + i;
-    }
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddProduct.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                AddProduct dialog = new AddProduct(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+        return "DU" + i;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -521,21 +408,14 @@ public class AddProduct extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel laptop;
-    private javax.swing.JPanel pc;
-    private javax.swing.JTextField txtCongsuatNguon;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtMaSanPham;
-    private javax.swing.JTextField txtMainBoard;
     private javax.swing.JTextField txtTenSanPham;
     private javax.swing.JTextField txtThuongHieu;
     private javax.swing.JTextField txtXuatXu;
