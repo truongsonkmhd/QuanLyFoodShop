@@ -46,7 +46,7 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
 
     public final void initTable() {
         tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"Mã máy", "Tên máy", "Số lượng", "Đơn giá", "Bộ xử lí", "RAM", "Bộ nhớ", "Loại máy"};
+        String[] headerTbl = new String[]{"Mã Sp", "Tên Sp", "Số lượng", "Đơn giá", "thuong hieu", "Khu vuc kho", "xuat xu", "Loại sp"};
         tblModel.setColumnIdentifiers(headerTbl);
         tblSanPham.setModel(tblModel);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(5);

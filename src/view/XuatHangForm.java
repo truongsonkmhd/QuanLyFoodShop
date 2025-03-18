@@ -62,7 +62,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
 
     public final void initTable() {
         tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"Mã máy", "Tên máy", "Số lượng", "Đơn giá"};
+        String[] headerTbl = new String[]{"Mã SP", "Tên SP", "Số lượng", "Đơn giá"};
         tblModel.setColumnIdentifiers(headerTbl);
         tblSanPham.setModel(tblModel);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(5);
@@ -93,18 +93,18 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         return tt;
     }
 
-    public SanPham findMayTinh(String maMay) {
+    public SanPham findSanPham(String maSp) {
         for (var i : allProduct) {
-            if (maMay.equals(i.getTenSp())) {
+            if (maSp.equals(i.getMaSp())) {
                 return i;
             }
         }
         return null;
     }
 
-    public ChiTietPhieu findCTPhieu(String maMay) {
+    public ChiTietPhieu findCTPhieu(String maSp) {
         for (var i : CTPhieu) {
-            if (maMay.equals(i.getMaMay())) {
+            if (maSp.equals(i.getmaSp())) {
                 return i;
             }
         }
@@ -119,7 +119,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
 
             for (int i = 0; i < CTPhieu.size(); i++) {
                 tblNhapHangmd.addRow(new Object[]{
-                    i + 1, CTPhieu.get(i).getMaMay(), findMayTinh(CTPhieu.get(i).getMaMay()).getTenSp(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
+                    i + 1, CTPhieu.get(i).getmaSp(), findSanPham(CTPhieu.get(i).getmaSp()).getTenSp(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
                 });
                 sum += CTPhieu.get(i).getDonGia();
             }
@@ -399,7 +399,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
                     SanPhamDAO mtdao = SanPhamDAO.getInstance();
                     for (var i : CTPhieu) {
                         ChiTietPhieuXuatDAO.getInstance().insert(i);
-                        mtdao.updateSoLuong(i.getMaMay(), mtdao.selectById(i.getMaMay()).getSoLuong() - i.getSoLuong());
+                        mtdao.updateSoLuong(i.getmaSp(), mtdao.selectById(i.getmaSp()).getSoLuong() - i.getSoLuong());
                     }
 
                     JOptionPane.showMessageDialog(this, "Xuất hàng thành công !");
@@ -443,7 +443,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
                         } else {
                             ChiTietPhieu mtl = findCTPhieu((String) tblSanPham.getValueAt(i_row, 0));
                             if (mtl != null) {
-                                if (findMayTinh((String) tblSanPham.getValueAt(i_row, 0)).getSoLuong() < mtl.getSoLuong() + soluong) {
+                                if (findSanPham((String) tblSanPham.getValueAt(i_row, 0)).getSoLuong() < mtl.getSoLuong() + soluong) {
                                     JOptionPane.showMessageDialog(this, "Số lượng máy không đủ !");
                                 } else {
                                     mtl.setSoLuong(mtl.getSoLuong() + soluong);
@@ -490,7 +490,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
                 try {
                     soLuong = Integer.parseInt(newSL);
                     if (soLuong > 0) {
-                        if (soLuong > findMayTinh(CTPhieu.get(i_row).getMaMay()).getSoLuong()) {
+                        if (soLuong > findSanPham(CTPhieu.get(i_row).getmaSp()).getSoLuong()) {
                             JOptionPane.showMessageDialog(this, "Số lượng không đủ !");
                         } else {
                             CTPhieu.get(i_row).setSoLuong(soLuong);

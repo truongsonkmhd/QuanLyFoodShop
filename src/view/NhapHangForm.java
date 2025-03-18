@@ -107,18 +107,18 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
         return tt;
     }
 
-    public SanPham findMayTinh(String maMay) {
+    public SanPham findMayTinh(String maSp) {
         for (var i : allProduct) {
-            if (maMay.equals(i.getMaSp())) {
+            if (maSp.equals(i.getMaSp())) {
                 return i;
             }
         }
         return null;
     }
 
-    public ChiTietPhieu findCTPhieu(String maMay) {
+    public ChiTietPhieu findCTPhieu(String maSp) {
         for (var i : CTPhieu) {
-            if (maMay.equals(i.getMaMay())) {
+            if (maSp.equals(i.getmaSp())) {
                 return i;
             }
         }
@@ -133,7 +133,7 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
 
             for (int i = 0; i < CTPhieu.size(); i++) {
                 tblNhapHangmd.addRow(new Object[]{
-                    i + 1, CTPhieu.get(i).getMaMay(), findMayTinh(CTPhieu.get(i).getMaMay()).getTenSp(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
+                    i + 1, CTPhieu.get(i).getmaSp(), findMayTinh(CTPhieu.get(i).getmaSp()).getTenSp(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
                 });
                 sum += CTPhieu.get(i).getDonGia() * CTPhieu.get(i).getSoLuong();
             }
@@ -409,7 +409,7 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
                     SanPhamDAO mtdao = SanPhamDAO.getInstance();
                     for (var i : CTPhieu) {
                         ChiTietPhieuNhapDAO.getInstance().insert(i);
-                        mtdao.updateSoLuong(i.getMaMay(), mtdao.selectById(i.getMaMay()).getSoLuong() + i.getSoLuong());
+                        mtdao.updateSoLuong(i.getmaSp(), mtdao.selectById(i.getmaSp()).getSoLuong() + i.getSoLuong());
                     }
                     JOptionPane.showMessageDialog(this, "Nhập hàng thành công !");
                     int res = JOptionPane.showConfirmDialog(this, "Bạn có muốn xuất file pdf ?","",JOptionPane.YES_NO_OPTION);
@@ -458,7 +458,7 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng lớn hơn 0");
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng ở dạng số nguyên!");
+                JOptionPane.showMessageDialog(this, "loi database");
             }
         }
     }//GEN-LAST:event_addProductActionPerformed

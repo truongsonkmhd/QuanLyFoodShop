@@ -378,7 +378,10 @@ public class ProductForm extends javax.swing.JInternalFrame {
                     String giaoke = giaFomat.substring(0, viTri) + giaFomat.substring(viTri + 1);
                     double donGia = Double.parseDouble(giaoke);
                     String thuongHieu = excelRow.getCell(5).getStringCellValue();
-                    SanPham mt = new SanPham(maSP, tenSP, soLuong, donGia, thuongHieu,0,"","", 1);
+                    String khuvuckho = excelRow.getCell(6).getStringCellValue();
+                    String xuatXu = excelRow.getCell(7).getStringCellValue();
+                    String loaiSP = excelRow.getCell(8).getStringCellValue();
+                    SanPham mt = new SanPham(maSP, tenSP, soLuong, donGia, thuongHieu,1,xuatXu,loaiSP, 1);
                     listAccExcel.add(mt);
                     DefaultTableModel table_acc = (DefaultTableModel) tblSanPham.getModel();
                     table_acc.setRowCount(0);

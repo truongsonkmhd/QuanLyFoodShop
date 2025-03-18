@@ -120,18 +120,18 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         return tt;
     }
 
-    public SanPham findMayTinh(String maMay) {
+    public SanPham findMayTinh(String maSp) {
         for (var i : allProduct) {
-            if (maMay.equals(i.getMaSp())) {
+            if (maSp.equals(i.getMaSp())) {
                 return i;
             }
         }
         return null;
     }
 
-    public ChiTietPhieu findCTPhieu(String maMay) {
+    public ChiTietPhieu findCTPhieu(String maSp) {
         for (var i : CTPhieu) {
-            if (maMay.equals(i.getMaMay())) {
+            if (maSp.equals(i.getmaSp())) {
                 return i;
             }
         }
@@ -145,7 +145,7 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
 
             for (int i = 0; i < CTPhieu.size(); i++) {
                 tblNhapHangmd.addRow(new Object[]{
-                    i + 1, CTPhieu.get(i).getMaMay(), findMayTinh(CTPhieu.get(i).getMaMay()).getTenSp(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
+                    i + 1, CTPhieu.get(i).getmaSp(), findMayTinh(CTPhieu.get(i).getmaSp()).getTenSp(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -398,11 +398,11 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm để nhập hàng !","Cảnh báo", JOptionPane.WARNING_MESSAGE);
         } else {
             for (var ct : CTPhieuOld) {
-                SanPhamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanPhamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() - ct.getSoLuong());
+                SanPhamDAO.getInstance().updateSoLuong(ct.getmaSp(), SanPhamDAO.getInstance().selectById(ct.getmaSp()).getSoLuong() - ct.getSoLuong());
                 System.out.println(ct.getSoLuong());
             }
             for (var ct : CTPhieu) {
-                SanPhamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanPhamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() + ct.getSoLuong());
+                SanPhamDAO.getInstance().updateSoLuong(ct.getmaSp(), SanPhamDAO.getInstance().selectById(ct.getmaSp()).getSoLuong() + ct.getSoLuong());
                 System.out.println(ct.getSoLuong());
             }
             // Lay thoi gian hien tai

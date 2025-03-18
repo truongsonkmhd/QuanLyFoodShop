@@ -6,7 +6,7 @@ import model.SanPham;
 
 /**
  *
- * @author sinh
+ * @author truongsonkmhd
  */
 public class SearchProduct {
 
@@ -151,9 +151,9 @@ public class SearchProduct {
         ArrayList<SanPham> armt = SanPhamDAO.getInstance().selectAll();
         for (var mt : armt) {
             if (mt.getTrangThai() == 0) {
-//                if (mt.getMaMay().toLowerCase().contains(text.toLowerCase())) {
-//                    result.add(mt);
-//                }
+                if (mt.getMaSp().toLowerCase().contains(text.toLowerCase())) {
+                    result.add(mt);
+                }
             }
         }
         return result;
@@ -163,10 +163,10 @@ public class SearchProduct {
         SanPham result = new SanPham();
         ArrayList<SanPham> armt = SanPhamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
-//            if (mt.getMaMay().toLowerCase().contains(text.toLowerCase())) {
-//                return mt;
-//            }
+            if (mt.getMaSp().toLowerCase().contains(text.toLowerCase())) {
+               result = mt;
+            }
         }
-        return null;
+        return result;
     }
 }

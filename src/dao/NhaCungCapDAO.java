@@ -4,15 +4,12 @@
  */
 package dao;
 
-import com.sun.jdi.connect.spi.Connection;
 import database.JDBCUtil;
-import java.sql.Date;
 import java.util.ArrayList;
 import model.NhaCungCap;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import model.Phieu;
 
 /**
  *

@@ -625,15 +625,9 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         if (content.length() > 0) {
             result = new ArrayList<>();
             switch (luaChon) {
-                case "Tất cả":
-                    result = searchTatCa(content);
-                    break;
-                case "Mã phiếu":
-                    result = searchMaPhieu(content);
-                    break;
-                case "Người tạo":
-                    result = searchNguoiTao(content);
-                    break;
+                case "Tất cả" -> result = searchTatCa(content);
+                case "Mã phiếu" -> result = searchMaPhieu(content);
+                case "Người tạo" -> result = searchNguoiTao(content);
             }
         } else if (content.length() == 0) {
             result = PhieuXuatDAO.getInstance().selectAll();

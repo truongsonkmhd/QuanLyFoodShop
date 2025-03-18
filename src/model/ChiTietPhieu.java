@@ -9,16 +9,16 @@ import java.util.Objects;
 public class ChiTietPhieu {
 
     private String maPhieu;
-    private String maMay;
+    private String maSp;
     private int soLuong;
     private double donGia;
 
     public ChiTietPhieu() {
     }
 
-    public ChiTietPhieu(String maPhieu, String maMay, int soLuong, double donGia) {
+    public ChiTietPhieu(String maPhieu, String maSp, int soLuong, double donGia) {
         this.maPhieu = maPhieu;
-        this.maMay = maMay;
+        this.maSp = maSp;
         this.soLuong = soLuong;
         this.donGia = donGia;
     }
@@ -31,12 +31,12 @@ public class ChiTietPhieu {
         this.maPhieu = maPhieu;
     }
 
-    public String getMaMay() {
-        return maMay;
+    public String getmaSp() {
+        return maSp;
     }
 
-    public void setMaMay(String maMay) {
-        this.maMay = maMay;
+    public void setmaSp(String maSp) {
+        this.maSp = maSp;
     }
 
     public int getSoLuong() {
@@ -82,12 +82,12 @@ public class ChiTietPhieu {
         if (!Objects.equals(this.maPhieu, other.maPhieu)) {
             return false;
         }
-        return Objects.equals(this.maMay, other.maMay);
+        return Objects.equals(this.maSp, other.maSp);
     }
 
     @Override
     public String toString() {
-        return "ChiTietPhieu{" + "maPhieu=" + maPhieu + ", maMay=" + maMay + ", soLuong=" + soLuong + ", donGia=" + donGia + '}';
+        return "ChiTietPhieu{" + "maPhieu=" + maPhieu + ", maSp=" + maSp + ", soLuong=" + soLuong + ", donGia=" + donGia + '}';
     }
 
     

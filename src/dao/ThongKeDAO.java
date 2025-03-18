@@ -29,20 +29,20 @@ public class ThongKeDAO {
         ArrayList<ThongKeProduct> ketQua = new ArrayList<ThongKeProduct>();
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT t1.maMay,tenMay,slNhap,slXuat FROM(\n"
-                    + "	SELECT maMay, SUM(soLuong) AS slNhap FROM ChiTietPhieuNhap \n"
+            String sql = "SELECT t1.maSp,tenSp,slNhap,slXuat FROM(\n"
+                    + "	SELECT maSp, SUM(soLuong) AS slNhap FROM ChiTietPhieuNhap \n"
                     + "	JOIN PhieuNhap ON PhieuNhap.maPhieu = ChiTietPhieuNhap.maPhieu\n"
                     + "	WHERE thoiGianTao BETWEEN ? AND ?"
-                    + "	GROUP BY maMay\n"
+                    + "	GROUP BY maSp\n"
                     + ") t1 \n"
                     + "JOIN(\n"
-                    + "	SELECT maMay, SUM(soLuong) AS slXuat FROM ChiTietPhieuXuat \n"
+                    + "	SELECT maSp, SUM(soLuong) AS slXuat FROM ChiTietPhieuXuat \n"
                     + "	JOIN PhieuXuat ON PhieuXuat.maPhieu = ChiTietPhieuXuat.maPhieu \n"
                     + "	WHERE thoiGianTao BETWEEN ? AND ?"
-                    + "	GROUP BY maMay\n"
+                    + "	GROUP BY maSp\n"
                     + ") t2\n"
-                    + "ON t1.maMay = t2.maMay\n"
-                    + "JOIN MayTinh ON t1.maMay = MayTinh.maMay";
+                    + "ON t1.maSp = t2.maSp\n"
+                    + "JOIN SanPham ON t1.maSp = SanPham.maSp";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setTimestamp(1, new Timestamp(timeStart.getTime()));
             pst.setTimestamp(2, new Timestamp(timeEnd.getTime()));
@@ -51,11 +51,11 @@ public class ThongKeDAO {
 
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                String maMay = rs.getString("maMay");
-                String tenMay = rs.getString("tenMay");
+                String maSp = rs.getString("maSp");
+                String tenSp = rs.getString("tenSp");
                 int slNhap = rs.getInt("slNhap");
                 int slXuat = rs.getInt("slXuat");
-                ThongKeProduct p = new ThongKeProduct(maMay, tenMay, slNhap, slXuat);
+                ThongKeProduct p = new ThongKeProduct(maSp, tenSp, slNhap, slXuat);
                 ketQua.add(p);
             }
         } catch (Exception e) {
@@ -69,26 +69,26 @@ public class ThongKeDAO {
         ArrayList<ThongKeProduct> ketQua = new ArrayList<ThongKeProduct>();
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT t1.maMay,tenMay,slNhap,slXuat FROM(\n"
-                    + "	SELECT maMay, SUM(soLuong) AS slNhap FROM ChiTietPhieuNhap \n"
+            String sql = "SELECT t1.maSp,tenSp,slNhap,slXuat FROM(\n"
+                    + "	SELECT maSp, SUM(soLuong) AS slNhap FROM ChiTietPhieuNhap \n"
                     + "	JOIN PhieuNhap ON PhieuNhap.maPhieu = ChiTietPhieuNhap.maPhieu\n"
-                    + "	GROUP BY maMay\n"
+                    + "	GROUP BY maSp\n"
                     + ") t1 \n"
                     + "JOIN(\n"
-                    + "	SELECT maMay, SUM(soLuong) AS slXuat FROM ChiTietPhieuXuat \n"
+                    + "	SELECT maSp, SUM(soLuong) AS slXuat FROM ChiTietPhieuXuat \n"
                     + "	JOIN PhieuXuat ON PhieuXuat.maPhieu = ChiTietPhieuXuat.maPhieu \n"
-                    + "	GROUP BY maMay\n"
+                    + "	GROUP BY maSp\n"
                     + ") t2\n"
-                    + "ON t1.maMay = t2.maMay\n"
-                    + "JOIN MayTinh ON t1.maMay = MayTinh.maMay";
+                    + "ON t1.maSp = t2.maSp\n"
+                    + "JOIN SanPham ON t1.maSp = SanPham.maSp";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                String maMay = rs.getString("maMay");
-                String tenMay = rs.getString("tenMay");
+                String maSp = rs.getString("maSp");
+                String tenSp = rs.getString("tenSp");
                 int slNhap = rs.getInt("slNhap");
                 int slXuat = rs.getInt("slXuat");
-                ThongKeProduct p = new ThongKeProduct(maMay, tenMay, slNhap, slXuat);
+                ThongKeProduct p = new ThongKeProduct(maSp, tenSp, slNhap, slXuat);
                 ketQua.add(p);
             }
         } catch (Exception e) {

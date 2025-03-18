@@ -107,18 +107,18 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         return tt;
     }
 
-    public SanPham findMayTinh(String maMay) {
+    public SanPham findMayTinh(String maSp) {
         for (var i : allProduct) {
-            if (maMay.equals(i.getMaSp())) {
+            if (maSp.equals(i.getMaSp())) {
                 return i;
             }
         }
         return null;
     }
 
-    public ChiTietPhieu findCTPhieu(String maMay) {
+    public ChiTietPhieu findCTPhieu(String maSp) {
         for (var i : CTPhieu) {
-            if (maMay.equals(i.getMaMay())) {
+            if (maSp.equals(i.getmaSp())) {
                 return i;
             }
         }
@@ -132,7 +132,7 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
 
             for (int i = 0; i < CTPhieu.size(); i++) {
                 tblNhapHangmd.addRow(new Object[]{
-                    i + 1, CTPhieu.get(i).getMaMay(), findMayTinh(CTPhieu.get(i).getMaMay()).getMaSp(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
+                    i + 1, CTPhieu.get(i).getmaSp(), findMayTinh(CTPhieu.get(i).getmaSp()).getMaSp(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -391,11 +391,11 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         } else {
             // Set so luong san pham cua tung loai ve ban dau        
             for (var ct : CTPhieuOld) {
-                SanPhamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanPhamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() + ct.getSoLuong());
+                SanPhamDAO.getInstance().updateSoLuong(ct.getmaSp(), SanPhamDAO.getInstance().selectById(ct.getmaSp()).getSoLuong() + ct.getSoLuong());
                 System.out.println(ct.getSoLuong());
             }
             for (var ct : CTPhieu) {
-                SanPhamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanPhamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() - ct.getSoLuong());
+                SanPhamDAO.getInstance().updateSoLuong(ct.getmaSp(), SanPhamDAO.getInstance().selectById(ct.getmaSp()).getSoLuong() - ct.getSoLuong());
                 System.out.println(ct.getSoLuong());
             }
             // Lay thoi gian hien tai
@@ -441,7 +441,7 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
                 int soLuong;
                 try {
                     soLuong = Integer.parseInt(newSL);
-                    if (soLuong > findMayTinh(CTPhieu.get(i_row).getMaMay()).getSoLuong()) {
+                    if (soLuong > findMayTinh(CTPhieu.get(i_row).getmaSp()).getSoLuong()) {
                         JOptionPane.showMessageDialog(this, "Số lượng không đủ !");
                     } else {
                         CTPhieu.get(i_row).setSoLuong(soLuong);

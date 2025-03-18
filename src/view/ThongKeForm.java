@@ -35,7 +35,7 @@ import model.ThongKeProduct;
 
 /**
  *
- * @author Robot
+ * @author truongsonkmhd
  */
 public class ThongKeForm extends javax.swing.JInternalFrame {
 
@@ -257,7 +257,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã máy", "Tên máy", "Số lượng nhập", "Số lượng xuất"
+                "STT", "Mã Sp", "Tên Sp", "Số lượng nhập", "Số lượng xuất"
             }
         ));
         tblThongKeProduct.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -799,7 +799,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -945,18 +945,10 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         String searchContent = jTextFieldSearch1.getText();
         ArrayList<Account> result = new ArrayList<>();
         switch (luachon) {
-            case "Tất cả":
-                result = SearchAccount.getInstance().searchTatCaAcc(searchContent);
-                break;
-            case "Tên tài khoản":
-                result = SearchAccount.getInstance().searchFullName(searchContent);
-                break;
-            case "Tên đăng nhập":
-                result = SearchAccount.getInstance().searchUserName(searchContent);
-                break;
-            case "Vai trò":
-                result = SearchAccount.getInstance().searchRole(searchContent);
-                break;
+            case "Tất cả" -> result = SearchAccount.getInstance().searchTatCaAcc(searchContent);
+            case "Tên tài khoản" -> result = SearchAccount.getInstance().searchFullName(searchContent);
+            case "Tên đăng nhập" -> result = SearchAccount.getInstance().searchUserName(searchContent);
+            case "Vai trò" -> result = SearchAccount.getInstance().searchRole(searchContent);
         }
         loadDataToTableAcc(result);
     }//GEN-LAST:event_jTextFieldSearch1KeyReleased
@@ -1150,15 +1142,9 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         ArrayList<Phieu> result = null;
 
         switch (luaChon) {
-            case "Tất cả":
-                result = searchTatCa(content);
-                break;
-            case "Phiếu Nhập":
-                result = searchPhieuNhap(content);
-                break;
-            case "Phiếu Xuất":
-                result = searchPhieuXuat(content);
-                break;
+            case "Tất cả" -> result = searchTatCa(content);
+            case "Phiếu Nhập" -> result = searchPhieuNhap(content);
+            case "Phiếu Xuất" -> result = searchPhieuXuat(content);
         }
 
         Iterator<Phieu> itr = result.iterator();
@@ -1253,7 +1239,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
                 from = jDateChooserFromPr.getDate();
                 to = new Date();
             } else if (jDateChooserToPr.getDate() != null && jDateChooserFromPr.getDate() == null) {
-                String sDate1 = "01/01/2022";
+                String sDate1 = "01/01/2025";
                 from = ConvertDate.getInstance().ChangeFrom(new SimpleDateFormat("dd/MM/yyyy").parse(sDate1));
                 to = jDateChooserToPr.getDate();
             } else {
@@ -1282,7 +1268,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             tblModelAcc.setRowCount(0);
             for (int i = 0; i < thongKe.size(); i++) {
                 tblModelAcc.addRow(new Object[]{
-                    (i + 1), thongKe.get(i).getMaMay(), thongKe.get(i).getTenMay(), thongKe.get(i).getSlNhap(), thongKe.get(i).getSlXuat()
+                    (i + 1), thongKe.get(i).getmaSp(), thongKe.get(i).gettenSp(), thongKe.get(i).getSlNhap(), thongKe.get(i).getSlXuat()
                 });
             }
             tblThongKeProduct.getColumnModel().getColumn(2).setPreferredWidth(400);
@@ -1293,7 +1279,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
     private ArrayList<ThongKeProduct> searchTenSanPhamThongKe(ArrayList<ThongKeProduct> arr, String name) {
         ArrayList<ThongKeProduct> result = new ArrayList<>();
         for (ThongKeProduct i : arr) {
-            if (i.getMaMay().toLowerCase().contains(name.toLowerCase()) || i.getTenMay().toLowerCase().contains(name.toLowerCase())) {
+            if (i.getmaSp().toLowerCase().contains(name.toLowerCase()) || i.gettenSp().toLowerCase().contains(name.toLowerCase())) {
                 result.add(i);
             }
         }

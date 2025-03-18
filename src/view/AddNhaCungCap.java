@@ -117,7 +117,7 @@ public class AddNhaCungCap extends javax.swing.JDialog {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 140, 38));
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 102));
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,7 +171,7 @@ public class AddNhaCungCap extends javax.swing.JDialog {
             if (maNcc.equals("") || tenNcc.equals("") || sdtNcc.equals("") || diachiNcc.equals("")) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
             } else {
-                if (NhaCungCapDAO.getInstance().selectById(maNcc) != null) {
+                if (NhaCungCapDAO.getInstance().selectById(maNcc) == null) {
                     NhaCungCap ncc = new NhaCungCap();
                     ncc.setMaNhaCungCap(maNcc);
                     ncc.setTenNhaCungCap(tenNcc);

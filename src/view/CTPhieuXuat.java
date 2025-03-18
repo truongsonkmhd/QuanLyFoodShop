@@ -49,8 +49,8 @@ public class CTPhieuXuat extends javax.swing.JDialog {
             for (int i = 0; i < CTPhieu.size(); i++) {
                 tblCTPhieumd.addRow(new Object[]{
                     i + 1, 
-                    CTPhieu.get(i).getMaMay(),
-                    SanPhamDAO.getInstance().selectById(CTPhieu.get(i).getMaMay()).getTenSp(),
+                    CTPhieu.get(i).getmaSp(),
+                    SanPhamDAO.getInstance().selectById(CTPhieu.get(i).getmaSp()).getTenSp(),
                     CTPhieu.get(i).getSoLuong(),
                     parent.getFormatter().format(CTPhieu.get(i).getDonGia()) + "đ",
                     parent.getFormatter().format(CTPhieu.get(i).getDonGia() * CTPhieu.get(i).getSoLuong()) + "đ"
@@ -89,7 +89,7 @@ public class CTPhieuXuat extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 102));
 
         jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

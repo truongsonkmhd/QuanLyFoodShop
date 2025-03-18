@@ -222,8 +222,8 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                String maMay = rs.getString("maSp");
-                String tenMay = rs.getString("tenSp");
+                String maSP = rs.getString("maSp");
+                String tenSP = rs.getString("tenSp");
                 int soLuong = rs.getInt("soLuong");
                 double gia = rs.getDouble("gia");
                 String thuongHieu = rs.getString("thuongHieu");
@@ -231,7 +231,7 @@ public class SanPhamDAO implements DAOInterface<SanPham> {
                 String loaiSp = rs.getString("loaiSP");
                 int khuVucKho = rs.getInt("khuVucKho");
                 int trangThai = rs.getInt("trangThai");
-                SanPham mt = new SanPham(maMay, tenMay, soLuong, gia, thuongHieu, khuVucKho, xuatXu, loaiSp, trangThai);
+                SanPham mt = new SanPham(maSP, tenSP, soLuong, gia, thuongHieu, khuVucKho, xuatXu, loaiSp, trangThai);
                 ketQua.add(mt);
             }
             JDBCUtil.closeConnection(con);
